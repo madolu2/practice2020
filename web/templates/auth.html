@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Авторизация</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container col-5 mt-5">
+        <div class="row mt-2 mb-4">
+            <div class="col"></div>
+            <label id="response"></label>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <form class="col-5">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Логин</label>
+                    <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Введите email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Пароль</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
+                </div>
+            </form>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <button type="submit" class="btn btn-primary m-2">Отправить</button>
+            <button type="submit" class="btn btn-success m-2">Зарегестрироваться</button>
+            <div class="col"></div>
+        </div>
+    </div>
+    <script>
+        let [auth_btn, reg_btn] = document.querySelectorAll('.btn');
+        [auth_btn, reg_btn].map(el => el.addEventListener('click', (e) => {
+            if (el == reg_btn) {
+                var url = 'http://127.0.0.1:5000/reg'
+            } else {
+                var url = 'http://127.0.0.1:5000/auth'
+            }
+
+            fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify(
+                        Array.from(
+                            document.querySelectorAll('input'))
+                        .map(input => input.value))
+                })
+                .then(data => data.text())
+                .then((data) => {
+                    if (data.indexOf('http') != -1) {
+                        document.location.href = data
+                    } else document.querySelector('#response').innerHTML = data
+                })
+
+        }))
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
