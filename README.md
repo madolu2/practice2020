@@ -48,9 +48,17 @@
 Запросы на создание
 CREATE TABLE users(
 	id INTEGER PRIMARY KEY,
-	email TEXT,
+	login TEXT,
 	pass TEXT,
 	bucket TEXT);
+
+CREATE TABLE buckets(
+	id INTEGER PRIMARY KEY,
+	html_el TEXT,
+	el_id INTEGER,
+	user_id INTEGER,
+	FOREIGN KEY(user_id) REFERENCES users(id)
+);
 
 CREATE TABLE autos(
 	id INTEGER PRIMARY KEY,

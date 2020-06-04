@@ -68,5 +68,29 @@ def reg():
     except sqlite3.OperationalError:
         return f'{sqlite3.OperationalError}'
 
+@app.route('/bucket', methods=['GET','POST'])
+def bucket():
+    conn = sqlite3.connect('../database.db')
+    c = conn.cursor()
+    if flask.request.method == 'POST':
+        data = eval(flask.request.data)
+        try:
+            c.execute(
+                f"INSERT INTO buckets (html_el, el_id, user_id) VALUES ('{data['html-el']}', {data['el_id']}," \
+                f"(SELECT id FROM users WHERE login='{data['user_login']}'));")
+            c.execute(
+                f"UPDATE autos SET count=count-1 WHERE id={data['el_id']};"
+            )
+            conn.commit()
+            return '200'
+        except sqlite3.OperationalError:
+            return f'{sqlite3.OperationalError}'
+    else: 
+        c.execute(f"SELECT html_el FROM buckets;")
+        arr = [line[0] for line in c.fetchall()]
+        print(arr[1])
+        return flask.render_template(
+            'bucket.html', autos=arr)
+        
 
 app.run(debug=True)
