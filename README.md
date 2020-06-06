@@ -18,59 +18,66 @@
 1. Каталог автомобилей +
 2. Гат ит босс! + 
 3. Ну на draw.io сделал как бы... +
-4. Таблица - Пользователь
-	Логин/почта
-	Пароль
-	Корзина
+4. Таблица - Пользователь  
+	Логин/почта  
+	Пароль  
+	Корзина  
 
-	Таблица - Автомобили 
-	Модель автомобиля 
-	Цвет 
-	Описание 
-	Цена 
-	Количество  
+	Таблица - Автомобили  
+	Модель автомобиля  
+	Цвет  
+	Описание  
+	Цена  
+	Количество   
 	++
 
-5. Python Eel 
-	Формы для ввода 
-	Модель автомобиля 
-	Цвет 
-	Описание 
-	Цена 
-	Количество 
+5. Python Eel  
+	Формы для ввода  
+	Модель автомобиля  
+	Цвет  
+	Описание  
+	Цена  
+	Количество  
 	Кнопка  
 	+++
-	
-6.  Страница авторизации/регистрации 
- 	Главная страница 
-  	Корзина 
+
+6.  Страница авторизации/регистрации  
+ 	Главная страница  
+  	Корзина  
 
 7. А можно не надо!
 
-База Данных
-Запросы на создание
-CREATE TABLE users(
-	id INTEGER PRIMARY KEY,
-	login TEXT,
-	pass TEXT,
-	bucket TEXT);
+База Данных  
+Запросы на создание  
+CREATE TABLE users(  
+	id INTEGER PRIMARY KEY,  
+	login TEXT,  
+	pass TEXT,  
+	bucket TEXT);  
 
-CREATE TABLE buckets(
-	id INTEGER PRIMARY KEY,
-	html_el TEXT,
-	el_id INTEGER,
-	user_id INTEGER,
-	FOREIGN KEY(user_id) REFERENCES users(id)
+CREATE TABLE buckets(  
+	id INTEGER PRIMARY KEY,  
+	html_el TEXT,  
+	el_id INTEGER,  
+	user_id INTEGER,  
+	FOREIGN KEY(user_id) REFERENCES users(id)  
 );
 
-CREATE TABLE autos(
-	id INTEGER PRIMARY KEY,
-	model TEXT,
-	color TEXT,
-	description TEXT,
-	img_url TEXT,
-	cost INTEGER,
-	count INTEGER);
+CREATE TABLE autos(  
+	id INTEGER PRIMARY KEY,  
+	model TEXT,  
+	color TEXT,  
+	description TEXT,  
+	img_url TEXT,  
+	cost INTEGER,  
+	count INTEGER);  
 
 Запросы на добавление
-INSERT INTO autos (model, color, description, img_url, cost, count) VALUES(
+INSERT INTO autos (  
+	model,  
+	color,  
+	description,  
+	img_url,  
+	cost,  
+	count)  
+VALUES( 
